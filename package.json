@@ -1,0 +1,31 @@
+{
+  "name": "string-typer",
+  "version": "1.0.0",
+  "description": "a tiny, environment-agnostic, string typing simulator",
+  "main": "index.js",
+  "devDependencies": {
+    "browserify": "~12.0.1",
+    "size-table": "~0.2.0",
+    "tape": "~4.2.2"
+  },
+  "scripts": {
+    "test": "tape test.js",
+    "size": "browserify index.js | size-table"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michaelrhodes/string-typer"
+  },
+  "keywords": [
+    "string",
+    "typer",
+    "typing",
+    "animated"
+  ],
+  "author": "Michael Rhodes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaelrhodes/string-typer/issues"
+  },
+  "homepage": "https://github.com/michaelrhodes/string-typer"
+}
