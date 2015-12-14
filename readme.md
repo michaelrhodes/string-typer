@@ -42,10 +42,11 @@ type('this is how you use a text field', function (typed) {
 
 ### Advanced
 
+Set the range of possibly keystroke delays:
+
 ```js
 var type = require('string-typer')
 
-// Set the range of possibly keystroke delays
 var delay = { min: 350, max: 1000 }
 
 type('type this really slow', delay, function (typed) {
@@ -53,13 +54,33 @@ type('type this really slow', delay, function (typed) {
 })
 ```
 
+Overwrite an initial string:
+
+```js
+var type = require('string-typer')
+
+var opts = {
+  initial: 'type this somewhat fast',
+  min: 350,
+  max: 1000
+}
+
+type('type this really slow', opts, function (typed) {
+  // Hard to document this in writing, but you
+  // would see “somewhat fast” backspaced and
+  // replaced with “really slow”
+
+  document.body.textContent = typed
+})
+```
+
 ## Page weight
 
 | compression            |    size |
 | :--------------------- | ------: |
-| string-typer.js        | 1.14 kB |
-| string-typer.min.js    |   779 B |
-| string-typer.min.js.gz |   443 B |
+| string-typer.js        | 1.53 kB |
+| string-typer.min.js    |   952 B |
+| string-typer.min.js.gz |   520 B |
 
 
 ## License

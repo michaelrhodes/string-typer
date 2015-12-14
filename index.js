@@ -7,12 +7,31 @@ function typer (string, opt, onchange) {
     opt = {}
   }
 
-  var typed = ''
   var done = false
+  var matching = false
   var chars = string.toString().split('')
   var delay = delayer(opt.min, opt.max)
+  var typed = opt.initial || ''
 
-  type()
+  typed ?
+    backspace() :
+    type()
+
+  function backspace () {
+    typed = typed.substr(0, typed.length - 1)
+    matching = string.indexOf(typed) == 0
+    onchange(typed, done)
+
+    if (matching) {
+      chars = chars.slice(typed.length)
+      setTimeout(type, delay())
+      return
+    }
+
+    if (typed.length) {
+      setTimeout(backspace, delay())
+    }
+  }
 
   function type () {
     typed += chars.shift()
