@@ -1,3 +1,5 @@
+var substr = require('unicode-string/substr')
+var length = require('unicode-string/length')
 var delayer = require('./delay')
 
 function once (string, opt, onchange) {
@@ -20,8 +22,8 @@ function once (string, opt, onchange) {
   initial ? backspace() : type()
 
   function backspace (end) {
-    typed = initial.substr(0, end)
-    end = typed.length
+    typed = substr(initial, 0, end)
+    end = length(typed)
     matching = initial != string && string.indexOf(typed) == 0
     onchange(typed, done)
 
@@ -31,8 +33,8 @@ function once (string, opt, onchange) {
   }
 
   function type (end) {
-    typed = string.substr(0, end)
-    end = typed.length
+    typed = substr(string, 0, end)
+    end = length(typed)
     done = typed == string
     onchange(typed, done)
 
