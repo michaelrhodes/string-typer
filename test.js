@@ -42,3 +42,13 @@ test('it works with delay range options', function (assert) {
     return a + b
   }
 })
+
+test('it can be stopped', function (assert) {
+  var stop = type('hello', { min: 1000 }, function (typed, done) {
+    if (typed == 'he') {
+      assert.equal(done, true)
+    }
+  })
+  stop()
+  assert.end()
+})

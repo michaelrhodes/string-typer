@@ -19,7 +19,7 @@ $ npm install string-typer
 #### On the command line
 
 ```js
-var type = require('string-typer')
+var type = require('string-typer/once')
 
 type('naïve typing simulation is kewl', function (typed, done) {
   process.stdout.clearLine()
@@ -32,7 +32,7 @@ type('naïve typing simulation is kewl', function (typed, done) {
 #### In the browser
 
 ```js
-var type = require('string-typer')
+var type = require('string-typer/once')
 var field = document.querySelector('input[type=text]')
 
 type('this is how you use a text field', function (typed) {
@@ -40,12 +40,27 @@ type('this is how you use a text field', function (typed) {
 })
 ```
 
+#### Stopping prematurely
+
+Works in both environments.
+
+```js
+var type = require('string-typer/once')
+var field = document.querySelector('input[type=text]')
+
+var stop = type('this is how you use a text field', function (typed) {
+  field.setAttribute('placeholder', typed)
+})
+
+field.oninput = stop
+```
+
 ### Advanced
 
 Set the range of possibly keystroke delays:
 
 ```js
-var type = require('string-typer')
+var type = require('string-typer/once')
 
 var delay = { min: 350, max: 1000 }
 
@@ -57,7 +72,7 @@ type('type this really slow', delay, function (typed) {
 Overwrite an initial string:
 
 ```js
-var type = require('string-typer')
+var type = require('string-typer/once')
 
 var opts = {
   initial: 'type this somewhat fast',
@@ -74,13 +89,40 @@ type('type this really slow', opts, function (typed) {
 })
 ```
 
+#### Looping
+
+```js
+var type = require('string-typer/loop')
+
+var text = [
+  'type this really slow',
+  'type this somewhat fast'
+]
+
+var opts = {
+  initial: 'type this somewhat fast',
+  min: 350,
+  max: 1000
+}
+
+var stop = type(text, opts, function (typed, stopped) {
+  document.body.textContent = typed
+
+  if (stopped) {
+    alert('aw man!')
+  }
+})
+
+document.documentElement.onclick = stop
+```
+
 ## Page weight
 
 | compression            |    size |
 | :--------------------- | ------: |
-| string-typer.js        | 4.05 kB |
-| string-typer.min.js    | 2.46 kB |
-| string-typer.min.js.gz | 1.01 kB |
+| string-typer.js        | 4.28 kB |
+| string-typer.min.js    | 2.56 kB |
+| string-typer.min.js.gz | 1.05 kB |
 
 
 ## License

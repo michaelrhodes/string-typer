@@ -8,6 +8,7 @@ function once (string, opt, onchange) {
     opt = {}
   }
 
+  var t = null
   var done = false
   var matching = false
   var initial = opt.initial
@@ -27,8 +28,8 @@ function once (string, opt, onchange) {
     onchange(typed, done)
 
     matching || end == 0 ?
-      setTimeout(type, delay(), end) :
-      setTimeout(backspace, delay(), end - 1)
+      t = setTimeout(type, delay(), end) :
+      t = setTimeout(backspace, delay(), end - 1)
   }
 
   function type (end) {
@@ -38,8 +39,13 @@ function once (string, opt, onchange) {
     onchange(typed, done)
 
     if (!done) {
-      setTimeout(type, delay(), end + 1)
+      t = setTimeout(type, delay(), end + 1)
     }
+  }
+
+  return function () {
+    clearTimeout(t)
+    onchange(typed, true)
   }
 }
 
