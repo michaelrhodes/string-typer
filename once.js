@@ -8,10 +8,9 @@ function once (string, opt, onchange) {
     opt = {}
   }
 
-  string = string + ''
   var done = false
   var matching = false
-  var initial = opt.initial + ''
+  var initial = opt.initial
   var typed = ''
 
   // Set keystroke delay range
@@ -19,7 +18,7 @@ function once (string, opt, onchange) {
   opt.max = isNaN(opt.max) ? 80 : opt.max
   var delay = delayer(opt.min, opt.max)
 
-  initial ? backspace() : type()
+  initial ? backspace() : type(1)
 
   function backspace (end) {
     typed = substr(initial, 0, end)
