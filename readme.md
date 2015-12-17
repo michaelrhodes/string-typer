@@ -78,9 +78,9 @@ type('type this really slow', opts, function (typed) {
 
 | compression            |    size |
 | :--------------------- | ------: |
-| string-typer.js        | 1.53 kB |
-| string-typer.min.js    |   952 B |
-| string-typer.min.js.gz |   520 B |
+| string-typer.js        | 4.08 kB |
+| string-typer.min.js    | 2.47 kB |
+| string-typer.min.js.gz | 1.01 kB |
 
 
 ## License
