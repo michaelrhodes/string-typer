@@ -118,6 +118,8 @@ document.documentElement.onclick = stop
 
 ## Page weight
 
+To be honest, I wish the bundle size was smaller, but the [unicode-string](https://github.com/michaelrhodes/unicode-string) dependency felt necessary at the time. But maybe emoji/zalgo handling isn’t as useful as I think it is? Or maybe I’m crazy to be stressing over 2kB…
+
 | compression            |    size |
 | :--------------------- | ------: |
 | string-typer.js        | 4.28 kB |
